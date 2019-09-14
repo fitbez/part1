@@ -4,18 +4,30 @@ import "./index.css";
 
 const App = props => {
   const [selected, setSelected] = useState(0);
-  // console.log(props);
+  const [points, setPoints] = useState(
+    new Array(6 + 1)
+      .join("0")
+      .split("")
+      .map(parseFloat)
+  );
+
+  const handlePoints = () => {
+    const copy = [...points];
+    setPoints(copy, (copy[selected] += 1));
+    // console.log(points);
+  };
+
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <p>{props.anecdotes[selected]}</p>
+      <p>has {points[selected]} votes</p>
+      <button onClick={handlePoints}>vote</button>
       <button
         onClick={() => {
-          setSelected(
-            anecdotes.indexOf(
-              anecdotes[Math.floor(Math.random() * anecdotes.length)]
-            )
-          );
-          console.log(selected);
+          const random =
+            anecdotes[Math.floor(Math.random() * anecdotes.length)];
+          setSelected(anecdotes.indexOf(random));
         }}
       >
         next anecdote
