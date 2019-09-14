@@ -10,6 +10,8 @@ const App = props => {
       .split("")
       .map(parseFloat)
   );
+  const mostVoted = points.indexOf(Math.max(...points));
+  // console.log(mostVoted);
 
   const handlePoints = () => {
     const copy = [...points];
@@ -32,6 +34,9 @@ const App = props => {
       >
         next anecdote
       </button>
+      <h2>Anecdote with most votes</h2>
+      <p>{props.anecdotes[mostVoted]}</p>
+      <p>has {points[mostVoted]} votes</p>
     </div>
   );
 };
